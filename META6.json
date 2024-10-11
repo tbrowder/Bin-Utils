@@ -1,0 +1,25 @@
+{
+  "auth": "zef:tbrowder",
+  "authors": [
+    "Tom Browder"
+  ],
+  "build-depends": [
+  ],
+  "depends": [
+  ],
+  "description": "Provides routines to handle 'slurp/slurp' for any file type in read/write directories",
+  "license": "Artistic-2.0",
+  "name": "Bin::Utils",
+  "perl": "6.d",
+  "provides": {
+    "Bin::Utils": "lib/Bin/Utils.rakumod"
+  },
+  "resources": [
+  ],
+  "source-url": "",
+  "tags": [
+  ],
+  "test-depends": [
+  ],
+  "version": "0.0.1"
+}
