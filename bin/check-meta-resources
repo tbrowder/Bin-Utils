@@ -1,0 +1,22 @@
+#!/usr/bin/env raku
+
+use Bin::Utils;
+
+if not @*ARGS.elems {
+    print qq:to/HERE/;
+    Usage: {} check [...options]
+
+    Checks that the files in a module repository's '/resource's directory 
+    are listed in its 'MET6.json' file.
+
+    The repository directory is assumed to be in the current dirctory 
+    unless the 'repo=/path/to/repodir' is used.
+
+    Options:
+        repo=X - where X is a module repository [default: $*CWD]
+    HERE
+}
+else {
+    check-repo($*ARGS)
+}
+

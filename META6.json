@@ -6,8 +6,11 @@
   "build-depends": [
   ],
   "depends": [
+    "File::Find",
+    "MacOS::NativeLib",
+    "File::Temp"
   ],
-  "description": "Provides routines to handle 'slurp/slurp' for any file type in read/write directories",
+  "description": "Provides routines to handle binary files",
   "license": "Artistic-2.0",
   "name": "Bin::Utils",
   "perl": "6.d",
@@ -15,9 +18,12 @@
     "Bin::Utils": "lib/Bin/Utils.rakumod"
   },
   "resources": [
+    "ls",
+    "docs/some-text.txt"
   ],
-  "source-url": "",
+  "source-url": "https://github.com/tbrowder/Bin-Utils.git",
   "tags": [
+    "blob round trip slurp spurt binary file cmp"
   ],
   "test-depends": [
   ],

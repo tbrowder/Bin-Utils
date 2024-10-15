@@ -1,6 +1,0 @@
-use Test;
-use Bin::Utils;
-
-pass "replace me";
-
-done-testing;

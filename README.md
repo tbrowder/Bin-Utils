@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/tbrowder/Bin-Utils/actions/workflows/linux.yml/badge.svg)](https://github.com/tbrowder/Bin-Utils/actions) [![Actions Status](https://github.com/tbrowder/Bin-Utils/actions/workflows/macos.yml/badge.svg)](https://github.com/tbrowder/Bin-Utils/actions) [![Actions Status](https://github.com/tbrowder/Bin-Utils/actions/workflows/windows.yml/badge.svg)](https://github.com/tbrowder/Bin-Utils/actions)
+
 NAME
 ====
 
