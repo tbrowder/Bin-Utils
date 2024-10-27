@@ -4,10 +4,10 @@ use Bin::Utils;
 
 if not @*ARGS.elems {
     print qq:to/HERE/;
-    Usage: {} check [...options]
+    Usage: {$*PROGRAM.basename} check [...options]
 
     Checks that the files in a module repository's '/resource's directory 
-    are listed in its 'MET6.json' file.
+    are listed in its 'META6.json' file.
 
     The repository directory is assumed to be in the current dirctory 
     unless the 'repo=/path/to/repodir' is used.

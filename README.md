@@ -3,19 +3,66 @@
 NAME
 ====
 
-**Bin::Utils** - Provides routines to handle 'slurp/slurp' for any file type in read/write directories
+**Bin::Utils** - Provides routines to handle 'slurp/spurt' for any file type in read/write directories
 
 SYNOPSIS
 ========
 
 ```raku
 use Bin::Utils;
+# Get contents of a file of unknown encoding
+my $from-path = "some-dir/file";
+my $contents = slurp-file $from-path;
+# Put contents of 'file' somewhere else
+# We don't usually change the basename,
+#   but we could at this point
+my $basename = $from-path.IO.basename
+my $dir = "another-dir/subdir";
+spurt-file $contents, :$basename, :$dir";
 ```
 
 DESCRIPTION
 ===========
 
-**Bin::Utils** is ...
+**Bin::Utils** should be used by any module author who wants to provide the contents of the module's /resources directory to its users. It provides the following:
+
+head2 Routines
+
+    #| Assumes file is binary, best choice
+    #| if in doubt of file type
+    sub slurp-file(
+         $path,
+    Bool :$bin    = True,
+    Bool :$utf8c8 = False,
+    Bool :$other  = False,
+        ) is export {...}
+
+    #| Assumes file is binary, best choice
+    #|   if in doubt of file type
+    #| Returns the new path
+    sub spurt-file(
+        $contents,
+        :$basename!,
+        :$dir is copy,    #= the desired output directory
+                          #= default: $*CWD ('.')
+        :$bin    = True,
+        :$utf8c8 = False,
+        --> IO::Path
+        ) is export {...}
+
+    #| Compares two files' binary contents
+    #| using the GNU system utility 'cmp'
+    sub bin-cmp(
+        $file1, 
+        $file2, 
+        # cmp options
+        :$s = True,  # silent
+        :$l = False, # list bytes differing and their values
+        :$b = False, # list bytes differing
+        :$n = 0,     # list first n bytes (default: 0 - list all)
+        :$debug, 
+        --> List
+        ) is export {...}
 
 AUTHOR
 ======

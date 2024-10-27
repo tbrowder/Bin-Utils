@@ -2,19 +2,78 @@
 
 =head1 NAME
 
-B<Bin::Utils> - Provides routines to handle 'slurp/slurp' for any file type in read/write directories
+B<Bin::Utils> - Provides routines to handle 'slurp/spurt' for any file type in read/write directories
 
 =head1 SYNOPSIS
 
 =begin code :lang<raku>
-
 use Bin::Utils;
-
+# Get contents of a file of unknown encoding
+my $from-path = "some-dir/file";
+my $contents = slurp-file $from-path;
+# Put contents of 'file' somewhere else
+# We don't usually change the basename,
+#   but we could at this point
+my $basename = $from-path.IO.basename
+my $dir = "another-dir/subdir";
+spurt-file $contents, :$basename, :$dir";
 =end code
 
 =head1 DESCRIPTION
 
-B<Bin::Utils> is ...
+B<Bin::Utils> should be used by any module author who wants to provide
+the contents of the module's /resources directory to its users. It provides the
+following routines:
+
+head2 Routines
+
+=begin code
+#| Assumes file is binary, best choice
+#| if in doubt of file type
+sub slurp-file(
+     $path,
+Bool :$bin    = True,
+Bool :$utf8c8 = False,
+Bool :$other  = False,
+    ) is export {...}
+=end code
+
+=begin code
+#| Assumes file is binary, best choice
+#|   if in doubt of file type
+#| Returns the new path
+sub spurt-file(
+    $contents,
+    :$basename!,
+    :$dir is copy,    #= the desired output directory
+                      #= default: $*CWD ('.')
+    :$bin    = True,
+    :$utf8c8 = False,
+    :$other  = False,
+    --> IO::Path
+    ) is export {...}
+=end code
+
+=begin code
+#| Compares two files' binary contents
+#| using the GNU system utility 'cmp'
+sub bin-cmp(
+    $file1, 
+    $file2, 
+    # cmp options
+    :$s = True,  # silent
+    :$l = False, # list bytes differing and their values
+    :$b = False, # list bytes differing
+    :$n = 0,     # list first n bytes (default: 0 - list all)
+    :$debug, 
+    --> List
+    ) is export {...}
+=end code
+
+Note the Raku 'slurp' and 'spurt' routines have many other options
+that a normal user of this simplified library would not need.
+The treatment of all files as binary blobs has been shown to be
+usable for files of three different encodings, including 'Str'.
 
 =head1 AUTHOR
 

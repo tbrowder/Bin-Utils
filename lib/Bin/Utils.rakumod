@@ -1,6 +1,7 @@
 unit module Bin::Utils;
 
-#| Assumes file is binary, best if in doubt of file type
+#| Assumes file is binary 
+#| if in doubt of file type
 sub slurp-file(
      $path,
 Bool :$bin    = True,
@@ -28,7 +29,8 @@ Bool :$other  = False,
 
 } # sub slurp-file
 
-#| Uses :bin as default, best if in doubt of file type
+#| Assumes file is binary, best choice
+#|   if in doubt of file type
 #| Returns the new path
 sub spurt-file(
     $content,
@@ -37,13 +39,13 @@ sub spurt-file(
                       #= default: $*CWD ('.')
     :$bin    = True,
     :$utf8c8 = False,
+    :$other  = False,
     :$debug,
     --> IO::Path
     ) is export {
 
     unless $dir.defined and $dir.IO.d {
-        $dir = "/tmp/spurt";
-        mkdir $dir;
+        $dir = $*CWD;
     }
     my $o    = IO::Path.new: :$basename, :$dir;
     my $ofil = "$dir/$o";
@@ -67,6 +69,8 @@ sub spurt-file(
 
 } # sub spurt-file
 
+#| Compares two files' binary contents
+#| using the GNU system binary 'cmp'
 sub bin-cmp(
     $file1, 
     $file2, 
@@ -78,6 +82,7 @@ sub bin-cmp(
     :$debug, 
     --> List
     ) is export {
+
     # Runs Gnu 'cmp' and compares the two inputs byte by byte
     # Returns a List whose first value is the error code
     #   and the rest are any data from :out and :err
@@ -153,7 +158,7 @@ sub check-repo($*ARGS) is export {
     # compare the two
     # report
 
-    # SEE CURTENT WORK IN Mi6::Helper
+    # SEE CURRENT WORK IN Mi6::Helper
 
 } # sub check-repo
 
