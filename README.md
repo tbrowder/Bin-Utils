@@ -33,7 +33,7 @@ DESCRIPTION
          $path
         ) is export {...}
 
-### slurp-file
+### spurt-file
 
     #| Assumes file is binary
     #| Returns the new path

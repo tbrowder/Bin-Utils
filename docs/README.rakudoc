@@ -34,7 +34,7 @@ sub slurp-file(
     ) is export {...}
 =end code
 
-=head3 slurp-file
+=head3 spurt-file
 
 =begin code
 #| Assumes file is binary
