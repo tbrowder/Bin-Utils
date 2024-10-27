@@ -24,29 +24,22 @@ spurt-file $contents, :$basename, :$dir";
 DESCRIPTION
 ===========
 
-**Bin::Utils** should be used by any module author who wants to provide the contents of the module's /resources directory to its users. It provides the following:
+**Bin::Utils** should be used by any module author who wants to provide the contents of the module's /resources directory to its users. It provides the following routines:
 
 head2 Routines
 
-    #| Assumes file is binary, best choice
-    #| if in doubt of file type
+    #| Assumes file is binary,
     sub slurp-file(
-         $path,
-    Bool :$bin    = True,
-    Bool :$utf8c8 = False,
-    Bool :$other  = False,
+         $path
         ) is export {...}
 
-    #| Assumes file is binary, best choice
-    #|   if in doubt of file type
+    #| Assumes file is binary
     #| Returns the new path
     sub spurt-file(
         $contents,
         :$basename!,
-        :$dir is copy,    #= the desired output directory
+        :$dir is copy     #= the desired output directory
                           #= default: $*CWD ('.')
-        :$bin    = True,
-        :$utf8c8 = False,
         --> IO::Path
         ) is export {...}
 
@@ -63,6 +56,8 @@ head2 Routines
         :$debug, 
         --> List
         ) is export {...}
+
+Note the Raku 'slurp' and 'spurt' routines have many other options that a normal user of this simplified library would not need. The treatment of all files as binary blobs has been shown to be usable for files of three different encodings, including 'Str'.
 
 AUTHOR
 ======

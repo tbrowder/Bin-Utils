@@ -1,45 +1,21 @@
 unit module Bin::Utils;
 
 #| Assumes file is binary 
-#| if in doubt of file type
 sub slurp-file(
      $path,
-Bool :$bin    = True,
-Bool :$utf8c8 = False,
-Bool :$other  = False,
      :$debug,
     ) is export {
-    my $content;
-    if $utf8c8 {
-        $content = $path.IO.slurp(:enc<utf8-c8>);
-    }
-    elsif $other {
-        # assumed it's a string
-        $content = $path.IO.slurp;
-    }
-    elsif $bin {
-        $content = $path.IO.slurp(:bin);
-    }
-    else {
-        die "FATAL: Unknown ':enc' entry for 'slurp'";
-    }
-
     # Returns file contents
-    $content
-
+    $path.IO.slurp(:bin);
 } # sub slurp-file
 
-#| Assumes file is binary, best choice
-#|   if in doubt of file type
+#| Assumes file is binary
 #| Returns the new path
 sub spurt-file(
     $content,
     :$basename!,
     :$dir is copy,    #= the desired output directory
                       #= default: $*CWD ('.')
-    :$bin    = True,
-    :$utf8c8 = False,
-    :$other  = False,
     :$debug,
     --> IO::Path
     ) is export {
@@ -53,16 +29,7 @@ sub spurt-file(
         say "DEBUG file to be spurted is '$ofil'";
     }
     
-    if $bin {
-        $ofil.IO.spurt: $content, :bin;
-    }
-    elsif $utf8c8 {
-        $ofil.IO.spurt: $content, :enc<utf8-c8>;
-    }
-    else {
-        # assumed it's a string
-        $ofil.IO.spurt: $content;
-    }
+    $ofil.IO.spurt: $content, :bin;
 
     # return path name
     $ofil.IO

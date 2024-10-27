@@ -15,7 +15,6 @@ my %bad;
 my %good;
 for @fils.kv -> $i, $path {
     my ($content, $copy, @res, $err, $basename, $dir);
-    my ($bin, $utf8c8, $other) = True, False, False;
 
     $basename = $path.IO.basename;
     say "Processing file '$basename' at index $i" if $debug;
@@ -23,8 +22,8 @@ for @fils.kv -> $i, $path {
 
     # local slurp/spurt ($*CWD)
     $dir = '.';
-    $content = slurp-file $path, :$bin, :$utf8c8, :$other, :$debug;
-    $copy    = spurt-file $content, :$basename, :$dir, :$bin, :$utf8c8, :$debug;
+    $content = slurp-file $path, :$debug;
+    $copy    = spurt-file $content, :$basename, :$dir, :$debug;
     @res     = bin-cmp $path, $copy, :l(True), :$debug;
     $err     = @res.shift;
     is $err, 0, "bin file '$path' round trips okay";
@@ -37,11 +36,10 @@ for @fils.kv -> $i, $path {
         say "  $%_" for @res;
         %bad{$i} = $path;
     }
-    #last if $i == 0;
 
     # use a temp dir
     $dir    = tempdir;
-    $copy   = spurt-file $content, :$basename, :$dir, :$bin, :$utf8c8, :$other, :$debug;
+    $copy   = spurt-file $content, :$basename, :$dir, :$debug;
     @res    = bin-cmp $path, $copy, :l(True), :$debug;
     $err    = @res.shift;
     is $err, 0, "bin file '$path' round trips okay";

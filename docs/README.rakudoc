@@ -28,28 +28,20 @@ following routines:
 head2 Routines
 
 =begin code
-#| Assumes file is binary, best choice
-#| if in doubt of file type
+#| Assumes file is binary,
 sub slurp-file(
-     $path,
-Bool :$bin    = True,
-Bool :$utf8c8 = False,
-Bool :$other  = False,
+     $path
     ) is export {...}
 =end code
 
 =begin code
-#| Assumes file is binary, best choice
-#|   if in doubt of file type
+#| Assumes file is binary
 #| Returns the new path
 sub spurt-file(
     $contents,
     :$basename!,
-    :$dir is copy,    #= the desired output directory
+    :$dir is copy     #= the desired output directory
                       #= default: $*CWD ('.')
-    :$bin    = True,
-    :$utf8c8 = False,
-    :$other  = False,
     --> IO::Path
     ) is export {...}
 =end code
