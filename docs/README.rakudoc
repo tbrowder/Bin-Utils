@@ -25,7 +25,7 @@ B<Bin::Utils> should be used by any module author who wants to provide
 the contents of the module's /resources directory to its users. It provides the
 following routines:
 
-head2 Routines
+=head3 slurp-file
 
 =begin code
 #| Assumes file is binary,
@@ -33,6 +33,8 @@ sub slurp-file(
      $path
     ) is export {...}
 =end code
+
+=head3 slurp-file
 
 =begin code
 #| Assumes file is binary
@@ -45,6 +47,8 @@ sub spurt-file(
     --> IO::Path
     ) is export {...}
 =end code
+
+=head3 bin-cmp
 
 =begin code
 #| Compares two files' binary contents

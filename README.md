@@ -26,12 +26,14 @@ DESCRIPTION
 
 **Bin::Utils** should be used by any module author who wants to provide the contents of the module's /resources directory to its users. It provides the following routines:
 
-head2 Routines
+### slurp-file
 
     #| Assumes file is binary,
     sub slurp-file(
          $path
         ) is export {...}
+
+### slurp-file
 
     #| Assumes file is binary
     #| Returns the new path
@@ -42,6 +44,8 @@ head2 Routines
                           #= default: $*CWD ('.')
         --> IO::Path
         ) is export {...}
+
+### bin-cmp
 
     #| Compares two files' binary contents
     #| using the GNU system utility 'cmp'
