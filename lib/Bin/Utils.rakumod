@@ -93,39 +93,3 @@ sub bin-cmp(
     }
     $err, |@lines, |@lines2
 } # sub bin-cmp
-
-sub check-repo($*ARGS) is export {
-    my $repo  = $*CWD;
-    my $debug = 0;
-
-    for @*ARGS {
-        when /^ 'repo=' (\S+) $/ {
-            $repo = ~$0;
-        }
-        when /^ d / {
-            ++$debug;
-        }
-        default {
-            die "FATAL: Unknown arg '$_'";
-        }
-    }
-
-    if not $repo.IO.d {
-        die "FATAL: path '$repo' is not a directory";
-    }
-    my @errs;
-
-    my $resdir = "$repo/resources";
-    my $meta   = "$repo/META6.json";
-    # get the META6.json "resources": listing
-    #   in a hash keyed by basename
-    # get the /resources file list
-    #   in a hash keyed by basename
-
-    # compare the two
-    # report
-
-    # SEE CURRENT WORK IN Mi6::Helper
-
-} # sub check-repo
-
