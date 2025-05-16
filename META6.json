@@ -8,6 +8,7 @@
   "depends": [
     "File::Find",
     "MacOS::NativeLib",
+    "File::Directory::Tree",
     "File::Temp"
   ],
   "description": "Provides routines to handle binary files",

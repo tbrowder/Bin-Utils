@@ -6,6 +6,7 @@ Revision history for Bin::Utils
     - Add test with a HERE string as contents to spurt
     - Update copyright
     - Remove prove6 from workflows testing
+    - Add missing del to META6.json
 
 0.0.1  2024-10-27T15:51:52-05:00
     - Initial version
