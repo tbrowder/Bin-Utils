@@ -24,7 +24,7 @@ spurt-file $contents, :$basename, :$dir";
 DESCRIPTION
 ===========
 
-**Bin::Utils** should be used by any module author who wants to provide the contents of the module's /resources directory to its users. It provides the following routines:
+**Bin::Utils** should be used by any module author who wants to provide the contents of a directory, file, or string to its users. It provides the following routines:
 
 ### slurp-file
 
@@ -71,7 +71,7 @@ Tom Browder <tbrowder@acm.org>
 COPYRIGHT AND LICENSE
 =====================
 
-© 2024 Tom Browder
+© 2024-2025 Tom Browder
 
 This library is free software; you may redistribute it or modify it under the Artistic License 2.0.
 
