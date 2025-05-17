@@ -1,6 +1,8 @@
 Revision history for Bin::Utils
 
 {{$NEXT}}
+
+0.0.2  2025-05-16T19:01:07-05:00
     - Tweak docs
       + Remove reference to '/resources'
     - Add test with a HERE string as contents to spurt
